@@ -1,0 +1,163 @@
+<div class="container row d-flex m-auto justify-content-center pt-4 pb-5 p-5">
+  <div class="card shadow  mb-2 pt-1 p-4 bg-light col-5">
+      <div class="card-body">
+          <h2 class="text-center text-uppercase">Registration Form</h2>
+          <hr/>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="row mt-3">
+      <div class="form-group col-md-6">
+          <label class="form-label text-uppercase fw-bold">FirstName</label>
+          <input type="text" class="form-control" formControlName="firstName"
+              [class.is-invalid]="registrationForm.controls['firstName'].invalid && (registrationForm.controls['firstName'].dirty || registrationForm.controls['firstName'].touched)"
+              required pattern>
+          <div
+              *ngIf="registrationForm.controls['firstName'].invalid && registrationForm.controls['firstName'].touched">
+              <div *ngIf="registrationForm.controls['firstName'].errors?.['required']" class="text-danger">
+                  First Name is Required</div>
+              <div *ngIf="registrationForm.controls['firstName'].errors?.['pattern']" class="text-danger">
+                  Only Characters are allowed.</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="form-label text-uppercase fw-bold" for="LastName">LastName</label>
+          <input type="text" class="form-control" id="LastName" formControlName="lastName"
+              [class.is-invalid]="registrationForm.controls['lastName'].invalid && (registrationForm.controls['lastName'].dirty || registrationForm.controls['lastName'].touched)"
+              required pattern>
+          <div *ngIf="registrationForm.controls['lastName'].invalid && registrationForm.controls['lastName'].touched">
+              <div *ngIf="registrationForm.controls['lastName'].errors?.['required']" class="text-danger">
+                  Last Name is Required</div>
+              <div *ngIf="registrationForm.controls['lastName'].errors?.['pattern']" class="text-danger">
+                  Only Characters are allowed.</div>
+          </div>
+      </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="form-group col-md-6">
+            <label class="form-label text-uppercase fw-bold">UserName</label>
+            <input type="text" class="form-control" formControlName="userName"
+                [class.is-invalid]="registrationForm.controls['userName'].invalid && (registrationForm.controls['userName'].dirty || registrationForm.controls['userName'].touched)"
+                required pattern>
+            <div *ngIf="registrationForm.controls['userName'].invalid && registrationForm.controls['userName'].touched">
+                <div *ngIf="registrationForm.controls['userName'].errors?.['required']" class="text-danger">
+                    User Name is Required</div>
+                <div *ngIf="registrationForm.controls['userName'].errors?.['pattern']" class="text-danger">
+                    <ul>
+                        <li>Only Characters are Not allowed.</li>
+                        <li>Please enter some numberic or underscore.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="form-label text-uppercase fw-bold">Email</label>
+            <input type="text" class="form-control" formControlName="email"
+                [class.is-invalid]="registrationForm.controls['email'].invalid && (registrationForm.controls['email'].dirty || registrationForm.controls['email'].touched)"
+                required email pattern>
+            <div *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched">
+                <div *ngIf="registrationForm.controls['email'].errors?.['required']" class="text-danger">Email
+                    is Required.</div>
+                <div *ngIf="registrationForm.controls['email'].errors?.['email'] || registrationForm.controls['email'].errors?.['pattern'] "
+                    class="text-danger">Please
+                    Enter Valid Email</div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+    <div class="form-group col-md-6">
+      <label class="form-label text-uppercase fw-bold">Password</label>
+      <input type="text" class="form-control" formControlName="Password"
+          [class.is-invalid]="registrationForm.controls['Password'].invalid && (registrationForm.controls['Password'].dirty || registrationForm.controls['Password'].touched)"
+          required email pattern>
+      <div *ngIf="registrationForm.controls['Password'].invalid && registrationForm.controls['Password'].touched">
+          <div *ngIf="registrationForm.controls['Password'].errors?.['required']" class="text-danger">Password
+              is Required.</div>
+          <div *ngIf="registrationForm.controls['Password'].errors?.['Password'] || registrationForm.controls['Password'].errors?.['pattern'] "
+              class="text-danger">Please
+              Enter Valid Password</div>
+      </div>
+  </div>
+
+
+
+      <div class="form-group col-md-6">
+          <label class="form-label text-uppercase fw-bold">Confirm Password</label>
+          <input type="text" class="form-control" formControlName="confirmPassword"
+              [class.is-invalid]="registrationForm.controls['confirmPassword'].invalid && (registrationForm.controls['confirmPassword'].dirty || registrationForm.controls['confirmPassword'].touched)"
+              required email pattern>
+          <div *ngIf="registrationForm.controls['confirmPassword'].invalid && registrationForm.controls['confirmPassword'].touched">
+              <div *ngIf="registrationForm.controls['confirmPassword'].errors?.['required']" class="text-danger">ConfirmPassword
+                  is Required.</div>
+              <div *ngIf="registrationForm.controls['confirmPassword'].errors?.['confirmPassword'] || registrationForm.controls['confirmPassword'].errors?.['pattern'] "
+                  class="text-danger">Please
+                  Enter Valid Password</div>
+          </div>
+      </div>
+  </div>
+  <div class="row  mt-3">
+  <div class="form-group col-md-6">
+    <label class="form-label text-uppercase fw-bold">Gender</label><br />
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="male" value="male"
+            formControlName="gender">
+        <label class="form-check-label" for="male">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="female"
+            value="female" formControlName="gender">
+        <label class="form-check-label" for="female">Female</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="others"
+            value="others" formControlName="gender">
+        <label class="form-check-label" for="others">Other</label>
+    </div>
+    <div *ngIf="registrationForm.controls['gender'].invalid && registrationForm.controls['gender'].touched"
+        class="text-danger">
+        <div *ngIf="registrationForm.controls['gender'].errors?.['required']">Please Select Gender.
+        </div>
+    </div>
+</div>
+
+  <div class="form-group col-md-6">
+    <label class="form-label text-uppercase fw-bold">Date Of Birth</label>
+    <input type="date" class="form-control" formControlName="dateOfBirth"
+        [class.is-invalid]="registrationForm.controls['dateOfBirth'].invalid && (registrationForm.controls['dateOfBirth'].dirty || registrationForm.controls['dateOfBirth'].touched)"
+        required>
+    <div
+        *ngIf="registrationForm.controls['dateOfBirth'].invalid && registrationForm.controls['dateOfBirth'].touched">
+        <div *ngIf="registrationForm.controls['dateOfBirth'].errors?.['required']"
+            class="text-danger">
+            Date of Birth is Required.</div>
+    </div>
+</div>
+</div>
+
+<div class="row  mt-3">
+<div class="form-group col-md-6">
+  <label class="form-label text-uppercase fw-bold">Phone Number</label>
+  <input type="text" class="form-control" formControlName="phoneNumber"
+      [class.is-invalid]="registrationForm.controls['phoneNumber'].invalid && (registrationForm.controls['phoneNumber'].dirty || registrationForm.controls['phoneNumber'].touched)"
+      required>
+  <div
+      *ngIf="registrationForm.controls['phoneNumber'].invalid && registrationForm.controls['phoneNumber'].touched">
+      <div *ngIf="registrationForm.controls['phoneNumber'].errors?.['required']"
+          class="text-danger">
+          PhoneNumber is Required.</div>
+  </div>
+</div>
+
+<div class="form-group col-md-6">
+  <label class="form-label text-uppercase fw-bold">Address</label>
+  <input type="text" class="form-control" formControlName="address">
+</div>
+</div>
+<div class="d-flex justify-content-center mt-3">
+   <button type="submit"  class="btn btn-primary justify-content-center" [disabled]="registrationForm.invalid">Create Account</button>
+  </div>
+   <div class="d-flex justify-content-center mt-2">Already have a n account?<a  class="nav-link text-primary text-uppercase" routerLink="/sign-In" >Login</a></div>
+  </form>
+</div>
+</div>
+<router-outlet></router-outlet>
+</div>
